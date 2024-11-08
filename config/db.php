@@ -12,10 +12,7 @@ try{
         $username,
         $password);
 
-    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-
-    echo "Conexión realizada";
-    
+    $db->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);    
 
 } catch (PDOException $e){
     echo "Error de conexión: " . $e->getMessage();
