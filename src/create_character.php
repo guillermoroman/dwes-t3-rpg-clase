@@ -4,7 +4,6 @@ require_once("config/db.php");
 require_once("model/Character.php");
 
 
-
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $character = new Character();
     $character->setName($_POST['name'])
