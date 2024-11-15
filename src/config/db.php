@@ -1,9 +1,9 @@
 <?php
 // Configuración de la base de datos
-$host = 'localhost';
+$host = 'db';
 $dbname = 'dwes_t3_rpg_clase';
-$username = 'root';
-$password = '';
+$username = 'user';
+$password = 'userpassword';
 
 
 try{
