@@ -29,6 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <title>Crea tu personaje</title>
 </head>
 <body>
+    <?php include('partials/_menu.php') ?>
     <h1>Crea tu personaje</h1>
     <form action = "create_character.php" method = "POST">
         <div>
