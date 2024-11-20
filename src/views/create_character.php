@@ -38,7 +38,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Crea tu personaje</title>
 </head>
-<body>
+
     <?php include('partials/_menu.php') ?>
     <h1>Crea tu personaje</h1>
     <form action = <?=$_SERVER['PHP_SELF']?> method = "POST">
@@ -71,7 +71,35 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     </form>
 
 
+<h1>Lista de personajes</h1>
+<table>
+    <thead>
+        <tr>
+            <th>Imagen</th>
+            <th>Nombre</th>
+            <th>Descripcion</th>
+            <th>PV</th>
+            <th>Fuerza</th>
+            <th>Defensa</th>
+            <th>Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php foreach($characters as $character):?>
+            <tr>
+                <td>img</td>
+                <td><?= $character['name']?></td>
+                <td><?= $character['description']?></td>
+                <td><?= $character['health']?></td>
+                <td><?= $character['strength']?></td>
+                <td><?= $character['defense']?></td>
+                <td>actions</td>
 
+            </tr>
+        <?php endforeach;?>
+
+    </tbody>
+</table>
 
     
 </body>
