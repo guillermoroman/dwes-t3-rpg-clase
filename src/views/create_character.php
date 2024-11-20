@@ -3,6 +3,16 @@
 require_once("../config/db.php");
 require_once("../model/Character.php");
 
+$characters = [];
+
+try{
+    $stmt = $db->query("SELECT * FROM characters");
+    $characters = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e){
+    echo "Error al leer de base de datos: " . $e->getMessage();
+}
+
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     $character = new Character($db);
@@ -31,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
 <body>
     <?php include('partials/_menu.php') ?>
     <h1>Crea tu personaje</h1>
-    <form action = "create_character.php" method = "POST">
+    <form action = <?=$_SERVER['PHP_SELF']?> method = "POST">
         <div>
             <label for="nameInput">Nombre:</label>
             <input type = "text" name = "name" id = "nameInput">
@@ -58,8 +68,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
         </div>
         
         <button type="submit">Crear personaje</button>
-        
     </form>
+
+
+
+
     
 </body>
 </html>
