@@ -93,7 +93,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                 <td><?= $character['health']?></td>
                 <td><?= $character['strength']?></td>
                 <td><?= $character['defense']?></td>
-                <td>actions</td>
+                <td>
+                    <form action="delete_character.php" method="POST">
+                        <input type="hidden" name="id" value="<?=$character["id"]?>">
+                        <button type="submit">Borrar</button>
+
+
+                    </form>
+                </td>
 
             </tr>
         <?php endforeach;?>
