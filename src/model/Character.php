@@ -155,7 +155,7 @@ class Character{
     }
 
     public function save(){
-        $stmt = $this->db->prepare("INSERT INTO characters (name,     description, health, strength, defense ) VALUES (:name, :description, :health, :strength, :defense)");
+        $stmt = $this->db->prepare("INSERT INTO characters (name, description, health, strength, defense) VALUES (:name, :description, :health, :strength, :defense)");
         $stmt->bindValue(':name', $this->getName());
         $stmt->bindValue(':description', $this->getDescription());
         $stmt->bindValue(':health', $this->getHealth());
@@ -165,5 +165,15 @@ class Character{
 
         return $stmt->execute();
         
+    }
+
+    public static function delete($db, $id): bool{
+        try {
+            $stmt = $db->prepare("DELETE FROM characters WHERE id = :id");
+            $stmt->bindValue(":id", $id);
+            return $stmt->execute();
+        } catch (PDOException $e) {
+            throw new Exception("Error al guardar el personaje: " . $e->getMessage());
+        }
     }
 }

@@ -1,7 +1,23 @@
 <?php
 
-require_once("../config/db.php");
-require_once("../model/Character.php");
+require_once("../../config/db.php");
+require_once("../../model/Character.php");
+
+// Guardar un personaje si llegamos con método POST
+if ($_SERVER['REQUEST_METHOD'] == 'POST'){
+    $character = new Character($db);
+    $character->setName($_POST['name'])
+        ->setDescription($_POST['description'])
+        ->setHealth($_POST['health'])
+        ->setStrength($_POST['strength'])
+        ->setDefense($_POST['defense']);
+
+    if ($character->save()){
+        echo "Se ha guardado el personaje";
+    } else {
+        echo "Error al guardar el personaje";
+    }
+}
 
 $characters = [];
 
@@ -14,21 +30,7 @@ try{
 
 
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST'){
-    $character = new Character($db);
-    $character->setName($_POST['name'])
-              ->setDescription($_POST['description'])
-              ->setHealth($_POST['health'])
-              ->setStrength($_POST['strength'])
-              ->setDefense($_POST['defense']);
 
-
-    if ($character->save()){
-        echo "Se ha guardado el personaje";
-    } else {
-        echo "Error al guardar el personaje";
-    }
-}
 ?>
 
 <!DOCTYPE html>
@@ -39,7 +41,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     <title>Crea tu personaje</title>
 </head>
 
-    <?php include('partials/_menu.php') ?>
+    <?php include('../partials/_menu.php') ?>
     <h1>Crea tu personaje</h1>
     <form action = <?=$_SERVER['PHP_SELF']?> method = "POST">
         <div>
@@ -98,7 +100,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
                         <input type="hidden" name="id" value="<?=$character["id"]?>">
                         <button type="submit">Editar</button>
                     </form>
-                    <form action="../model/delete_character.php" method="POST">
+                    <form action="../../controllers/delete_character.php" method="POST">
                         <input type="hidden" name="id" value="<?=$character["id"]?>">
                         <button type="submit">Borrar</button>
                     </form>
@@ -110,6 +112,5 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST'){
     </tbody>
 </table>
 
-    
 </body>
 </html>
