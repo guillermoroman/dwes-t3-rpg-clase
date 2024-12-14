@@ -173,7 +173,7 @@ class Character{
             $stmt->bindValue(":id", $id);
             return $stmt->execute();
         } catch (PDOException $e) {
-            throw new Exception("Error al guardar el personaje: " . $e->getMessage());
+            throw new Exception("Error al borrar el personaje: " . $e->getMessage());
         }
     }
 }
